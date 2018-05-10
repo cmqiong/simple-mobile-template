@@ -1,0 +1,20 @@
+{
+  "name": "sound-simple-mobile-template",
+  "description": "引用的第三方插件库",
+  "authors": [
+    "aimee <aimee@soundbus.cn>"
+  ],
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "vConsole": "latest",
+    "modernizr": "^3.6.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

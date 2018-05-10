@@ -1,0 +1,14 @@
+@import "mixin";
+
+body {
+  div {
+    @include font-dpr(20px); // 设置字体
+    .test {
+      display: block;
+      width: 350px;
+      height: 100px;
+      background-color: pink;
+      box-shadow: 2px 2px 1px #000;
+    }
+  }
+}
