@@ -5,3 +5,14 @@
 4. CDN 地址替换
 5. 图片压缩
 6. 使用 bower 管理第三方插件库
+
+### 启动项目
+```
+cd src
+npm install 或 yarn
+npm install bower -g
+bower install
+---
+npm run dev // 开发环境
+npm run build // 部署环境
+```

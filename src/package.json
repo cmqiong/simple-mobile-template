@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp default",
-    "public": "gulp build"
+    "build": "gulp build"
   },
   "license": "ISC",
   "devDependencies": {

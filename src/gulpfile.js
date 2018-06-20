@@ -1,36 +1,36 @@
-var gulp       = require("gulp"),
-    browserify = require("gulp-browserify");
-sass = require("gulp-sass"), //sass编译
-  autoprefixer = require("autoprefixer"), //自动处理浏览器前缀
-  postcss = require("gulp-postcss"), //postcss
-  pxtorem = require("postcss-pxtorem"), //pxtorem
-  fileinclude = require("gulp-file-include"), //include
-  precompile = require("gulp-handlebars-precompile"), //提取handlebars模板
-  del = require("del"), // del
-  gulpSequence = require("gulp-sequence"), //同步异步执行代码
-  gutil = require("gulp-util"), //util
-  inlinesource = require("gulp-inline-source"), //内联
-  replace = require("gulp-replace"),
-  useref = require("gulp-useref"), //文件合并和替换
-  gulpif = require("gulp-if"), //if
-  gulpExpectFile = require("gulp-expect-file"),
-  gulpFilter = require("gulp-filter"),
-  uglify = require("gulp-uglify"), //js压缩
-  minifyCss = require("gulp-minify-css"), //css压缩
-  // imagemin = require('gulp-imagemin'), //图片压缩
-  rev = require("gulp-rev-append-all"), //MD5戳
-  eslint = require("gulp-eslint"), //eslint
-  gulpBabel = require("gulp-babel"), // babel
-  spritesmith = require("gulp.spritesmith"), //sprite
-  plumber = require("gulp-plumber"),
-  buffer = require("vinyl-buffer"),
-  merge = require("merge-stream"),
-  cheerio = require("gulp-cheerio"),
-  args = require("yargs").argv,
-  browserSync = require("browser-sync").create(),
-  reload = browserSync.reload,
-  config = require("./config.js"),
-  vendorJson = require("./vendor.base.json");
+var gulp           = require("gulp"),
+    browserify     = require("gulp-browserify"),
+    sass           = require("gulp-sass"), // sass编译
+    autoprefixer   = require("autoprefixer"), // 自动处理浏览器前缀
+    postcss        = require("gulp-postcss"), // postcss
+    pxtorem        = require("postcss-pxtorem"), // pxtorem
+    fileinclude    = require("gulp-file-include"), // include
+    precompile     = require("gulp-handlebars-precompile"), // 提取handlebars模板
+    del            = require("del"), // del
+    gulpSequence   = require("gulp-sequence"), // 同步异步执行代码
+    gutil          = require("gulp-util"), // util
+    inlinesource   = require("gulp-inline-source"), // 内联
+    replace        = require("gulp-replace"),
+    useref         = require("gulp-useref"), // 文件合并和替换
+    gulpif         = require("gulp-if"), // if
+    gulpExpectFile = require("gulp-expect-file"),
+    gulpFilter     = require("gulp-filter"),
+    uglify         = require("gulp-uglify"), // js压缩
+    minifyCss      = require("gulp-minify-css"), // css压缩
+    // imagemin = require('gulp-imagemin'), // 图片压缩
+    rev            = require("gulp-rev-append-all"), // MD5戳
+    eslint         = require("gulp-eslint"), // eslint
+    gulpBabel      = require("gulp-babel"), // babel
+    spritesmith    = require("gulp.spritesmith"), //sprite
+    plumber        = require("gulp-plumber"),
+    buffer         = require("vinyl-buffer"),
+    merge          = require("merge-stream"),
+    cheerio        = require("gulp-cheerio"),
+    args           = require("yargs").argv,
+    browserSync    = require("browser-sync").create(),
+    reload         = browserSync.reload,
+    config         = require("./config.js"),
+    vendorJson     = require("./vendor.base.json");
 
 var CDNUrl = config.CDNUrl,
     env    = (args.env || args.ENV || "").toLowerCase(); // 部署环境 (dev|qa|prod)
@@ -451,6 +451,7 @@ gulp.task("dist_html", function () {
 });
 
 gulp.task("dist_html:CDNUrl", function () {
+  if(!CDNUrl) return;
 
   return gulp.src(path.build.views + "*.html")
              .pipe(gulpif(condition, cheerio({
@@ -490,7 +491,7 @@ gulp.task("dist_css", function () {
 
   log("正在压缩移动 css 文件...");
   return gulp.src(path.dev.css + "**/*.css")
-             .pipe(replace("../", CDNUrl))
+             .pipe(gulpif(CDNUrl, replace("../", CDNUrl)))
              .pipe(minifyCss())
              .pipe(gulp.dest(path.build.css));
 });
