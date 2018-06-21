@@ -1,6 +1,6 @@
 {
   "name": "sound-simple-mobile-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "小型多页移动端脚手架（gulp+bower+scss）",
   "main": "index.js",
   "scripts": {
