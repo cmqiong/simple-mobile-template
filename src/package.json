@@ -5,14 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp default",
-    "build": "gulp build",
-    "commit": "git-cz",
-    "release": "standard-version"
-  },
-  "config": {
-    "commitizen": {
-      "path": "src/node_modules/cz-conventional-changelog"
-    }
+    "build": "gulp build"
   },
   "license": "ISC",
   "devDependencies": {
@@ -22,8 +15,6 @@
     "@babel/preset-es2015": "^7.0.0-beta.46",
     "autoprefixer": "^8.4.1",
     "browser-sync": "^2.13.0",
-    "commitizen": "^2.10.1",
-    "cz-conventional-changelog": "^2.1.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "8.0.0-beta.2",
@@ -54,6 +45,5 @@
     "yargs": "^11.0.0"
   },
   "dependencies": {
-    "standard-version": "^4.4.0"
   }
 }
